@@ -1,0 +1,4 @@
+USE master;
+CREATE DATABASE NotificationPattern;
+USE NotificationPattern;
+CREATE TABLE PERSON (ID INT PRIMARY KEY IDENTITY, NAME VARCHAR(50));

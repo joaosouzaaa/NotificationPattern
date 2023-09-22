@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql-container
+    environment:
+      - SA_PASSWORD=Person123
+      - ACCEPT_EULA=Y
+
+  notificationpattern:
+    image: ${DOCKER_REGISTRY-}notificationpattern
+    container_name: notification-pattern-container
+    build:
+      context: .
+      dockerfile: NotificationPattern/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development 
+    ports:
+      - "8000:80"
+      - "8001:443" 
+    depends_on:
+      - "sqldata"
+
+  exceptionproject:
+    image: ${DOCKER_REGISTRY-}exceptionproject
+    container_name: exception-project-container
+    build:
+      context: .
+      dockerfile: ExceptionProject/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development 
+    ports:
+      - "1000:80"
+      - "1001:443" 
+    depends_on:
+      - "sqldata"  
