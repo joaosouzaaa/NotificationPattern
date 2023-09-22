@@ -1,23 +1,24 @@
-﻿using NotificationPattern.Interfaces.Settings;
+﻿using Domain.Errors;
+using NotificationPattern.Interfaces;
 
 namespace NotificationPattern.Settings.NotificationSettings;
 
 public sealed class NotificationHandler : INotificationHandler
 {
-    private readonly List<DomainNotification> _notificationList;
+    private readonly List<Notification> _notificationList;
 
     public NotificationHandler()
     {
-        _notificationList = new List<DomainNotification>();
+        _notificationList = new List<Notification>();
     }
 
-    public List<DomainNotification> GetNotifications() =>
+    public List<Notification> GetNotifications() =>
         _notificationList;
 
     public bool HasNotification() =>
         _notificationList.Any();
 
-    public bool AddNotification(DomainNotification notification)
+    public bool AddNotification(Notification notification)
     {
         _notificationList.Add(notification);
         
@@ -26,7 +27,7 @@ public sealed class NotificationHandler : INotificationHandler
 
     public bool AddNotification(string key, string message)
     {
-        var notification = new DomainNotification()
+        var notification = new Notification()
         {
             Key = key,
             Message = message

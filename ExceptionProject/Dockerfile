@@ -8,6 +8,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["ExceptionProject/ExceptionProject.csproj", "ExceptionProject/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["Infra/Infra.csproj", "Infra/"]
 RUN dotnet restore "ExceptionProject/ExceptionProject.csproj"
 COPY . .
 WORKDIR "/src/ExceptionProject"

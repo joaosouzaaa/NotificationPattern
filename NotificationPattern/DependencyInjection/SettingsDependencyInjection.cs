@@ -1,4 +1,4 @@
-﻿using NotificationPattern.Interfaces.Settings;
+﻿using NotificationPattern.Interfaces;
 using NotificationPattern.Settings.NotificationSettings;
 
 namespace NotificationPattern.DependencyInjection;

@@ -21,6 +21,8 @@ services:
       - "8001:443" 
     depends_on:
       - "sqldata"
+    volumes:
+      - ./Infra/DatabaseScripts:/app/infra
 
   exceptionproject:
     image: ${DOCKER_REGISTRY-}exceptionproject
@@ -35,3 +37,5 @@ services:
       - "1001:443" 
     depends_on:
       - "sqldata"  
+    volumes:
+      - ./Infra/DatabaseScripts:/app/infra

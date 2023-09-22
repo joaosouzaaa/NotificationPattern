@@ -1,4 +1,4 @@
-﻿namespace NotificationPattern.Entities;
+﻿namespace Domain.Entities;
 
 public sealed class Person
 {

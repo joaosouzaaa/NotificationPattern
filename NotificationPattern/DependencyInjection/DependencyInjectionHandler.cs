@@ -1,4 +1,4 @@
-﻿using NotificationPattern.Settings.DatabaseSettings;
+﻿using Infra.DependencyInjection;
 
 namespace NotificationPattern.DependencyInjection;
 
@@ -6,9 +6,8 @@ public static class DependencyInjectionHandler
 {
     public static void AddDependencyInjectionHandler(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddRepositoryDependencyInjection();
         services.AddFiltersDependencyInjection();
         services.AddSettingsDependencyInjection();
-        DatabaseFactory.CreateDatabase(configuration.GetConnectionString("InitialConnection"));
+        services.AddInfraDependencyInjection(configuration); 
     }
 }

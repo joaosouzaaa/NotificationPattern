@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using NotificationPattern.Interfaces.Settings;
+using NotificationPattern.Interfaces;
 
 namespace NotificationPattern.Filters;
 

@@ -1,9 +1,9 @@
-﻿using Moq;
+﻿using Domain.Entities;
+using Domain.Errors;
+using Infra.Interfaces;
+using Moq;
 using NotificationPattern.Controllers;
-using NotificationPattern.Entities;
-using NotificationPattern.Errors;
-using NotificationPattern.Interfaces.Repositories;
-using NotificationPattern.Interfaces.Settings;
+using NotificationPattern.Interfaces;
 
 namespace NotificationPatternUnitTests.ControllerTests;
 public sealed class PersonControllerTests

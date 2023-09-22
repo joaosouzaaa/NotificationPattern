@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NotificationPattern.Entities;
-using NotificationPattern.Errors;
-using NotificationPattern.Interfaces.Repositories;
-using NotificationPattern.Interfaces.Settings;
+﻿using Domain.Entities;
+using Domain.Errors;
+using Infra.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using NotificationPattern.Interfaces;
 
 namespace NotificationPattern.Controllers;
 [Route("api/[controller]")]
@@ -26,6 +26,10 @@ public sealed class PersonController : ControllerBase
 
 		return await _personRepository.AddPersonAsync(person);
 	}
+
+	[HttpGet("get-all")]
+	public async Task<IEnumerable<Person>> GetAllAsync() => 
+		await _personRepository.GetAllAsync();
 
     private bool IsNameValid(string name) => 
 		name.Length < 50;

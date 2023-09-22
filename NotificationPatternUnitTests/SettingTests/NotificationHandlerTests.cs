@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using Domain.Errors;
 using NotificationPattern.Settings.NotificationSettings;
 
 namespace NotificationPatternUnitTests.SettingTests;
@@ -31,7 +32,7 @@ public sealed class NotificationHandlerTests
 	public void HasNotification_AddNotification_HasNotificationTrue()
 	{
 		// A
-		var notificationToAdd = new DomainNotification()
+		var notificationToAdd = new Notification()
 		{
 			Key = _random.Word(),
 			Message = _random.Word(),
@@ -57,7 +58,7 @@ public sealed class NotificationHandlerTests
 	public void AddNotification_AddEntity_ReturnsFalse()
 	{
 		// A
-		var notificationToAdd = new DomainNotification()
+		var notificationToAdd = new Notification()
 		{
 			Key = _random.Word(),
 			Message = _random.Word()
@@ -88,7 +89,7 @@ public sealed class NotificationHandlerTests
 	{
 		for(var i = 0; i < range; i++)
 		{
-            var notification = new DomainNotification()
+            var notification = new Notification()
             {
                 Key = _random.Word(),
                 Message = _random.Word()
