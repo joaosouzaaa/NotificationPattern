@@ -27,10 +27,6 @@ public sealed class PersonController : ControllerBase
 		return await _personRepository.AddPersonAsync(person);
 	}
 
-	[HttpGet("get-all")]
-	public async Task<IEnumerable<Person>> GetAllAsync() => 
-		await _personRepository.GetAllAsync();
-
     private bool IsNameValid(string name) => 
 		name.Length < 50;
 }

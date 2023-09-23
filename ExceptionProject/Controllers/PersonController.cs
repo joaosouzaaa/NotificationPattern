@@ -16,7 +16,7 @@ public sealed class PersonController : ControllerBase
 	}
 
 	[HttpPost("add-person")]
-	public async Task<bool> AddPerson([FromBody] Person person)
+	public async Task<bool> AddPersonAsync([FromBody] Person person)
 	{
 		try
 		{
@@ -30,11 +30,6 @@ public sealed class PersonController : ControllerBase
 			throw;
 		}
 	}
-
-    [HttpGet("get-all")]
-    public async Task<IEnumerable<Person>> GetAllAsync() =>
-        await _personRepository.GetAllAsync();
-
 
     private bool IsNameValid(string name) =>
         name.Length < 50;

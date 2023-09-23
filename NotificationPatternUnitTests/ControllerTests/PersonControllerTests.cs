@@ -43,13 +43,13 @@ public sealed class PersonControllerTests
     public async Task AddPersonAsync_NameIsInvalid_NotificationIsAdded_ReturnsFalse()
     {
         // A
-        var person = new Person()
+        var invalidPerson = new Person()
         {
             Name = new string('a', 60)
         };
 
         // A
-        var addPersonResult = await _personController.AddPersonAsync(person);
+        var addPersonResult = await _personController.AddPersonAsync(invalidPerson);
 
         // A
         _notificationHandlerMock.Verify(n => n.AddNotification(It.Is<string>(n => n == InvalidPersonErrors.InvalidNameError.Key), 

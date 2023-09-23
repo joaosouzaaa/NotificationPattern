@@ -31,14 +31,4 @@ public sealed class PersonRepository : IPersonRepository
 
         return addPersonResult > 0;
     }
-
-    public async Task<IEnumerable<Person>> GetAllAsync()
-    {
-        using var sqlConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-
-        const string getAllSqlString = @"SELECT *
-            FROM PERSON";
-
-        return await sqlConnection.QueryAsync<Person>(getAllSqlString);
-    }
 }
