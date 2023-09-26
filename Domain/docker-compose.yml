@@ -48,8 +48,6 @@ services:
       - ./Infra/DatabaseScripts:/app/infra
 
   benchmark:
-    image: ${DOCKER_REGISTRY-}benchmark
-    container_name: benchmark
     build:
       context: .
       dockerfile: Benchmark/Dockerfile

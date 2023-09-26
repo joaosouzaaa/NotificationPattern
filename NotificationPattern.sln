@@ -15,13 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benchmark", "Benchmark\Benc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationPatternUnitTests", "NotificationPatternUnitTests\NotificationPatternUnitTests.csproj", "{D5E11E20-53F2-47EF-B49D-732A486144DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationPatternIntegrationTests", "NotificationPatternIntegrationTests\NotificationPatternIntegrationTests.csproj", "{D07F719E-94E3-42F7-BD5D-9B3567DCA2AC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{D42ACD8B-08A8-48DD-AE92-8C2532DB189D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{E3620800-F494-4A20-A23B-C802DB9702A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionProjectUnitTests", "..\ExceptionProjectUnitTests\ExceptionProjectUnitTests.csproj", "{F5B98CC7-AC82-4F3C-A7B8-74A730D20983}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExceptionProjectUnitTests", "..\ExceptionProjectUnitTests\ExceptionProjectUnitTests.csproj", "{F5B98CC7-AC82-4F3C-A7B8-74A730D20983}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +47,6 @@ Global
 		{D5E11E20-53F2-47EF-B49D-732A486144DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5E11E20-53F2-47EF-B49D-732A486144DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5E11E20-53F2-47EF-B49D-732A486144DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D07F719E-94E3-42F7-BD5D-9B3567DCA2AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D07F719E-94E3-42F7-BD5D-9B3567DCA2AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D07F719E-94E3-42F7-BD5D-9B3567DCA2AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D07F719E-94E3-42F7-BD5D-9B3567DCA2AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D42ACD8B-08A8-48DD-AE92-8C2532DB189D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D42ACD8B-08A8-48DD-AE92-8C2532DB189D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D42ACD8B-08A8-48DD-AE92-8C2532DB189D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,7 +65,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D5E11E20-53F2-47EF-B49D-732A486144DF} = {0320BCDF-43AF-4B52-AF75-248D23D170DB}
-		{D07F719E-94E3-42F7-BD5D-9B3567DCA2AC} = {0320BCDF-43AF-4B52-AF75-248D23D170DB}
 		{F5B98CC7-AC82-4F3C-A7B8-74A730D20983} = {0320BCDF-43AF-4B52-AF75-248D23D170DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
