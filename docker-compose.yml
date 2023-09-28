@@ -46,13 +46,3 @@ services:
       - "sqldataexception"  
     volumes:
       - ./Infra/DatabaseScripts:/app/infra
-
-  benchmark:
-    image: ${DOCKER_REGISTRY-}benchmark
-    container_name: benchmark
-    build:
-      context: .
-      dockerfile: Benchmark/Dockerfile
-    depends_on:
-      - "notificationpattern"
-      - "exceptionproject"
