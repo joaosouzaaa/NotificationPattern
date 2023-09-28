@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Interfaces.Validators;
 using ExceptionProject.Exceptions;
 using Infra.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,12 @@ namespace ExceptionProject.Controllers;
 public sealed class PersonController : ControllerBase
 {
     private readonly IPersonRepository _personRepository;
+	private readonly IPersonValidator _personValidator;
 
-	public PersonController(IPersonRepository personRepository)
+	public PersonController(IPersonRepository personRepository, IPersonValidator personValidator)
 	{
 		_personRepository = personRepository;
+		_personValidator = personValidator;
 	}
 
 	[HttpPost("add-person")]
@@ -20,7 +23,7 @@ public sealed class PersonController : ControllerBase
 	{
 		try
 		{
-			if (!IsNameValid(person.Name))
+			if (!_personValidator.IsPersonValid(person))
 				throw new InvalidNameException();
 
 			return await _personRepository.AddPersonAsync(person);
@@ -30,7 +33,4 @@ public sealed class PersonController : ControllerBase
 			throw;
 		}
 	}
-
-    private bool IsNameValid(string name) =>
-        name.Length < 50;
 }

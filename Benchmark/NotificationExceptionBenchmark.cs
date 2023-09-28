@@ -1,6 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 using Domain.Entities;
+using Domain.Interfaces.Validators;
 using Infra.Interfaces;
 using Moq;
 using NotificationPattern.Interfaces;
@@ -15,6 +16,7 @@ public class NotificationExceptionBenchmark
 {
     private Mock<INotificationHandler> _notificationHandlerMock;
     private Mock<IPersonRepository> _personRepositoryMock;
+    private Mock<IPersonValidator> _personValidatorMock;
     private NotificationPattern.Controllers.PersonController _personControllerNotification;
     private ExceptionProject.Controllers.PersonController _personControllerException;
 
@@ -23,8 +25,11 @@ public class NotificationExceptionBenchmark
     {
         _notificationHandlerMock = new Mock<INotificationHandler>();
         _personRepositoryMock = new Mock<IPersonRepository>();
-        _personControllerNotification = new NotificationPattern.Controllers.PersonController(_notificationHandlerMock.Object, _personRepositoryMock.Object);
-        _personControllerException = new ExceptionProject.Controllers.PersonController(_personRepositoryMock.Object);
+        _personValidatorMock = new Mock<IPersonValidator>();
+        _personControllerNotification = new NotificationPattern.Controllers.PersonController(_notificationHandlerMock.Object, _personRepositoryMock.Object, 
+            _personValidatorMock.Object);
+        _personControllerException = new ExceptionProject.Controllers.PersonController(_personRepositoryMock.Object, 
+            _personValidatorMock.Object);
     }
 
     [Benchmark]
@@ -35,7 +40,7 @@ public class NotificationExceptionBenchmark
             Name = "random"
         };
 
-        _notificationHandlerMock.Setup(n => n.AddNotification(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+        _personValidatorMock.Setup(p => p.IsPersonValid(It.IsAny<Person>())).Returns(true);
         _personRepositoryMock.Setup(p => p.AddPersonAsync(It.IsAny<Person>())).ReturnsAsync(true);
 
         return await _personControllerNotification.AddPersonAsync(person);
@@ -49,6 +54,8 @@ public class NotificationExceptionBenchmark
             Name = new string('a', 60)
         };
 
+        _personValidatorMock.Setup(p => p.IsPersonValid(It.IsAny<Person>())).Returns(false);
+
         return await _personControllerNotification.AddPersonAsync(person);
     }
 
@@ -60,6 +67,7 @@ public class NotificationExceptionBenchmark
             Name = "random"
         };
 
+        _personValidatorMock.Setup(p => p.IsPersonValid(It.IsAny<Person>())).Returns(true);
         _personRepositoryMock.Setup(p => p.AddPersonAsync(It.IsAny<Person>())).ReturnsAsync(true);
 
         return await _personControllerException.AddPersonAsync(person);
@@ -74,6 +82,8 @@ public class NotificationExceptionBenchmark
             {
                 Name = new string('a', 60)
             };
+
+            _personValidatorMock.Setup(p => p.IsPersonValid(It.IsAny<Person>())).Returns(false);
 
             await _personControllerException.AddPersonAsync(person);
         }

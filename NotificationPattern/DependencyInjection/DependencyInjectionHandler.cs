@@ -1,4 +1,5 @@
-﻿using Infra.DependencyInjection;
+﻿using Domain.DependencyInjection;
+using Infra.DependencyInjection;
 
 namespace NotificationPattern.DependencyInjection;
 
@@ -8,6 +9,7 @@ public static class DependencyInjectionHandler
     {
         services.AddFiltersDependencyInjection();
         services.AddSettingsDependencyInjection();
-        services.AddInfraDependencyInjection(configuration); 
+        services.AddInfraDependencyInjection(configuration);
+        services.AddValidatorDependencyInjection();
     }
 }

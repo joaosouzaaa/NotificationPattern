@@ -1,3 +1,4 @@
+using Domain.DependencyInjection;
 using ExceptionProject.Middlewares;
 using Infra.DependencyInjection;
 
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfraDependencyInjection(configuration);
+builder.Services.AddValidatorDependencyInjection();
 
 var app = builder.Build();
 
