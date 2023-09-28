@@ -1,15 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
-using BenchmarkDotNet.Validators;
 using Domain.Entities;
-using ExceptionProject.Exceptions;
 using Infra.Interfaces;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Moq;
 using NotificationPattern.Interfaces;
-using System.Net.Http.Json;
 
 namespace Benchmark;
 
@@ -83,7 +77,7 @@ public class NotificationExceptionBenchmark
 
             await _personControllerException.AddPersonAsync(person);
         }
-        catch (InvalidNameException exception)
+        catch 
         {
         }
     }
