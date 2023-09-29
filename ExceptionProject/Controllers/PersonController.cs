@@ -20,7 +20,9 @@ public sealed class PersonController : ControllerBase
 	}
 
 	[HttpPost("add-person")]
-	public async Task<bool> AddPersonAsync([FromBody] Person person)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IEnumerable<Notification>))]
+    public async Task<bool> AddPersonAsync([FromBody] Person person)
 	{
 		try
 		{
