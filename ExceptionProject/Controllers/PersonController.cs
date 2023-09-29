@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Errors;
 using Domain.Interfaces.Validators;
 using ExceptionProject.Exceptions;
 using Infra.Interfaces;
@@ -23,8 +24,16 @@ public sealed class PersonController : ControllerBase
 	{
 		try
 		{
-			if (!_personValidator.IsPersonValid(person))
-				throw new InvalidNameException();
+			var isPersonValid = _personValidator.IsPersonValid(person);
+
+            if (!isPersonValid.IsValid)
+			{
+				if(isPersonValid.Errors.ContainsKey(InvalidPersonErrors.InvalidNameError.Key))
+					throw new InvalidNameException();
+
+				if (isPersonValid.Errors.ContainsKey(InvalidPersonErrors.InvalidAgeError.Key))
+					throw new InvalidAgeException();
+			}
 
 			return await _personRepository.AddPersonAsync(person);
         }

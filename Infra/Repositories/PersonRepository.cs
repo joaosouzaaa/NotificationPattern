@@ -19,12 +19,15 @@ public sealed class PersonRepository : IPersonRepository
     {
         using var sqlConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-        const string addPersonSqlString = @"INSERT INTO PERSON (NAME) 
-            VALUES (@Name)";
+        const string addPersonSqlString = @"INSERT INTO PERSON (NAME,
+            AGE) 
+            VALUES (@Name,
+            @Age)";
 
         var personToAdd = new
         {
-            person.Name
+            Name = person.Name,
+            Age = person.Age
         };
 
         var addPersonResult = await sqlConnection.ExecuteAsync(addPersonSqlString, personToAdd);

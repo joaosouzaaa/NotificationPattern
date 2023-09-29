@@ -1,7 +1,8 @@
 ﻿using Domain.Entities;
+using Domain.Validators;
 
 namespace Domain.Interfaces.Validators;
 public interface IPersonValidator
 {
-    bool IsPersonValid(Person person);
+    ValidationResult IsPersonValid(Person person);
 }

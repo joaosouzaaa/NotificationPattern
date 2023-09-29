@@ -25,8 +25,17 @@ public sealed class PersonController : ControllerBase
 	[HttpPost("add-person")]
 	public async Task<bool> AddPersonAsync([FromBody] Person person)
 	{
-		if (!_personValidator.IsPersonValid(person))
-			return _notificationHandler.AddNotification(InvalidPersonErrors.InvalidNameError.Key, InvalidPersonErrors.InvalidNameError.Value);
+		var isPersonValid = _personValidator.IsPersonValid(person);
+
+        if (!isPersonValid.IsValid)
+		{
+			foreach(var error in isPersonValid.Errors)
+			{
+				_notificationHandler.AddNotification(error.Key, error.Value);
+			}
+
+			return isPersonValid.IsValid;
+		}
 
 		return await _personRepository.AddPersonAsync(person);
 	}
